@@ -53,6 +53,15 @@
         }
       );
 
+      devShells = eachSystem (
+        { pkgs, system, ... }:
+        {
+          default = pkgs.mkShell {
+            packages = [ self.packages.${system}.slackcli ];
+          };
+        }
+      );
+
       formatter = eachSystem ({ system, ... }: treefmtEval.${system}.config.build.wrapper);
 
       packages = eachSystem (
