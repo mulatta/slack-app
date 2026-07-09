@@ -57,7 +57,10 @@
         { pkgs, system, ... }:
         {
           default = pkgs.mkShell {
-            packages = [ self.packages.${system}.slackcli ];
+            packages = [
+              self.packages.${system}.slackcli
+              pkgs.yq-go
+            ];
           };
         }
       );
