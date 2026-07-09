@@ -54,5 +54,12 @@
       );
 
       formatter = eachSystem ({ system, ... }: treefmtEval.${system}.config.build.wrapper);
+
+      packages = eachSystem (
+        { pkgs, ... }:
+        {
+          slackcli = pkgs.callPackage ./packages/slackcli { };
+        }
+      );
     };
 }
